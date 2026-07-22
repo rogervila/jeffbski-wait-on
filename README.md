@@ -12,11 +12,8 @@ wait-on can also be used in reverse mode which waits for resources to NOT be ava
 
 ## Installation
 
-Latest wait-on version 7+ requires Node.js 12+
-wait-on versions 4-6 requires Node.js 10+
+wait-on supports the Node.js versions that are active or in maintenance and provide native `fetch`. See the list here: https://nodejs.org/en/about/releases/
 
-(Node.js v8 users can use wait-on@5.3.0, v4 users can still use wait-on@2.1.2, and older Node.js
-engines, use wait-on@1.5.4)
 
 ```bash
 npm install wait-on # local version
@@ -184,17 +181,8 @@ var opts = {
     /* strings or binaries */
   ],
   passphrase: 'yourpassphrase',
-  proxy: false /* OR proxy config as defined in axios.
-  If not set axios detects proxy from env vars http_proxy and https_proxy
-  https://github.com/axios/axios#config-defaults
-  {
-    host: '127.0.0.1',
-    port: 9000,
-    auth: {
-      username: 'mikeymike',
-      password: 'rapunz3l'
-    }
-  } */,
+  // HTTP checks use the runtime's native fetch implementation.
+  // Configure proxies at the Node.js runtime or network layer when needed.
   auth: {
     user: 'theuser', // or username
     pass: 'thepassword' // or password
@@ -254,19 +242,7 @@ waitOn(opts, [cb]) - function which triggers resource checks
   - opts.cert: [ /* strings or binaries */ ],
   - opts.key: [ /* strings or binaries */ ],
   - opts.passphrase: 'yourpassphrase',
-  - opts.proxy: undefined, false, or object as defined in axios. Default is undefined. If not set axios detects proxy from env vars http_proxy and https_proxy. https://github.com/axios/axios#config-defaults
-
-```js
-  // example proxy object
-  {
-    host: '127.0.0.1',
-    port: 9000,
-    auth: {
-      username: 'mikeymike',
-      password: 'rapunz3l'
-    }
-  }
-```
+  - opts.proxy: deprecated and retained only for compatibility with existing config files. HTTP checks use native `fetch`; configure proxying at the Node.js runtime or network layer when needed.
 
 - opts.auth: { user, pass }
 - opts.strictSSL: false,

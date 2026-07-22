@@ -11,3 +11,15 @@ node_modules
 npm-debug.log
 build-lib
 .idea
+.DS_Store
+.fastembed_cache
+.nyc_output
+coverage
+
+# Agents
+.agents/
+.github/agents/
+.github/copilot*
+.claude/
+.windsurf/
+skills-lock.json
